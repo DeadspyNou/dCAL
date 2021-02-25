@@ -9,4 +9,7 @@ class User {
 
     @ColumnInfo(name = "History")
     public String Recent;
+
+    public User(String s) {
+    }
 }
