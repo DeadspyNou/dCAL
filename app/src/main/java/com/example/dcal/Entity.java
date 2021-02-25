@@ -1,12 +1,14 @@
 package com.example.dcal;
 
-import androidx.room.*;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 
-@Entity(tableName="RecentData")
+@Entity(tableName="RecentData",primaryKeys = {"uid"})
 class User {
-    @PrimaryKey(autoGenerate = true)
-    public int uid;
 
+    @PrimaryKey(autoGenerate = true)
+    public  int uid;
     @ColumnInfo(name = "History")
-    public String Recent;
+    public  String Recent;
+
 }
