@@ -2,7 +2,7 @@ package com.example.dcal;
 
 import androidx.room.*;
 
-@Entity(tableName="RecentData")
+@Entity(tableName="RecentData",primaryKeys = {"uid"})
 class User {
     @PrimaryKey(autoGenerate = true)
     public int uid;

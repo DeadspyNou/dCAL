@@ -24,7 +24,7 @@
         android:maxLength="12"
         android:textAlignment="textEnd"
         android:textColor="#2196F3"
-        android:textSize="40sp"
+        android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.547"

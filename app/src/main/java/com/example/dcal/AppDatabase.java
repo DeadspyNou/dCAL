@@ -11,7 +11,6 @@ import java.util.concurrent.Executors;
 
 @Database(entities = {User.class}, version = 1,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
-
     public abstract UserDao userDao();
 
     private static volatile AppDatabase INSTANCE;
@@ -24,7 +23,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "RecentData")
+                            AppDatabase.class, "User")
                             .build();
                 }
             }

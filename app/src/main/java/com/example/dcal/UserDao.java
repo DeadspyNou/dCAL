@@ -11,8 +11,10 @@ import java.util.List;
 public interface UserDao {
   @Query("SELECT * FROM RecentData")
   List<User> getAll();
-   //User getAll();
-   @Insert(onConflict = OnConflictStrategy.REPLACE)
-   void insertAll(User users);
 
+   @Insert(onConflict=OnConflictStrategy.REPLACE)
+   void insertAll(User users);
+//
+//    @Delete
+//    void delete(User user);
 }

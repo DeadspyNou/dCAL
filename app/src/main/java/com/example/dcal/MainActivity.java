@@ -9,12 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     TextView Display;
     String Equation="";
-    String[] MyHistory={};
+    List<String> MyHistory = new ArrayList<>();
     int Id=0;
     int H=0;
     int NewH=0;
@@ -154,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
 //                    .userDao()
 //                    .insertAll(Equation+"",Equation);
 
-
     } catch (Exception Error) {
         Equation = ("");
         Display.setText(Error.getMessage());
@@ -190,39 +190,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }Display.setText(Equation);}
     public void hisIT(View view){
-        User random= new User();
-                random.Recent=Equation;
                 AppDatabase.databaseWriteExecutor.execute(new Runnable() {
                     @Override
                     public void run() {
-//                         String Hist=AppDatabase.getDatabase(getApplicationContext())
-//                                .userDao()
-//                                .getAll().Recent;
                         List<User> Hist=AppDatabase.getDatabase(getApplicationContext())
                                 .userDao()
                                 .getAll();
                         try {
-
-
-                            Display.setText(Hist.get(0).Recent+"");
                             for (int i = 0; i < Hist.size(); i++) {
-                                MyHistory[i] = (Hist.get(i).Recent+"");
+                                MyHistory.add(Hist.get(i).Recent+"");
                             }
-                            NewH = Hist.size();
-                            if (NewH == H) {
-                                H = H - 1;
+                            int GetVal=Hist.size()-H;
+                            if (GetVal<0){
+                                H=1;
+                                Display.setText(MyHistory.get(Hist.size()-H));
+                            }else{
+                                Display.setText(MyHistory.get(GetVal));
                             }
-                            Display.setText(MyHistory[H]);
                         }catch(Exception Emo){
-                            Display.setText(Emo.getMessage());
+                            Display.setText("Error"+Emo);
                         }
-                    }
-                });
-
+                        NewH = Hist.size();
+                        }
+                });H=H+1;
         }
         public void InsertNow(){
                     User random= new User();
-                    //random.uid=Id;
+                    random.uid=Id;
                    random.Recent=Equation;
                     AppDatabase.databaseWriteExecutor.execute(new Runnable() {
                         @Override
@@ -232,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                                     .insertAll(random);
                         }
                     });
-
+            Id=Id+1;
 
     }
 
