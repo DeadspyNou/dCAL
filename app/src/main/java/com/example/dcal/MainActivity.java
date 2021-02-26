@@ -150,11 +150,6 @@ public class MainActivity extends AppCompatActivity {
         double result = expression.evaluate();
         Equation = (result+"");
         Display.setText(result+"");
-//ERROR -- CANNOT FIND
-//            AppDatabase.getDatabase(getApplicationContext())
-//                    .userDao()
-//                    .insertAll(Equation+"",Equation);
-
     } catch (Exception Error) {
         Equation = ("");
         Display.setText(Error.getMessage());
